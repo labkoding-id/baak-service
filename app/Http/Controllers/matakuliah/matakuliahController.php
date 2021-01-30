@@ -17,6 +17,7 @@ class MatakuliahController extends Controller
     public function __construct()
     {
         $this->connection = 'DATA_DOSEN';
+        $this->db_name = env('DB_BAAK_MATAKULIAH');
     }
 
     public function all()
@@ -47,12 +48,12 @@ class MatakuliahController extends Controller
         
         DB::connection($this->connection)->beginTransaction();
         try {
-            Model::create(request()->all());
+            $results = Model::create(request()->all());
             DB::connection($this->connection)->commit();
-            return response()->json(['response' => 200]);
+            return $this->res($this->db_name, $results);
         } catch (Exception $e) {
             DB::connection($this->connection)->rollback();
-            return response()->json(['response' => 301]);
+            return $this->res_error($this->db_name, $e->getMessage());
         }
     }
 
@@ -83,18 +84,17 @@ class MatakuliahController extends Controller
         $exec = Model::find($id);
 
         if($exec === null){
-            return response()->json(['response' => 404]);
+            return $this->res($this->db_name);
         }
 
         DB::connection($this->connection)->beginTransaction();
         try {
-            $exec->delete();
-          
+            $results = $exec->delete();
             DB::connection($this->connection)->commit();
-            return response()->json(['response' => 200]);
+            return $this->res($this->db_name, $results);
         } catch (Exception $e) {
             DB::connection($this->connection)->rollback();
-            return response()->json(['response' => 301]);
+            return $this->res_error($this->db_name, $e->getMessage());
         }   
     }
 }

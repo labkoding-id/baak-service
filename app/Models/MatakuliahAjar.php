@@ -9,5 +9,8 @@ class MataKuliahAjar extends Model
     protected $primaryKey = 'id';
     protected $connection = 'DATA_MATAKULIAH';
     protected $table = 'mata_kuliah_ajar';
-    protected $guard = [];
+    protected $fillable = [
+        'id_matakuliah',
+        'nidn',
+    ];
 }
