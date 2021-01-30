@@ -10,12 +10,11 @@ class CreateMataKuliahsTable extends Migration
     {
         Schema::connection('DATA_MATAKULIAH')->create('mata_kuliah', function (Blueprint $table) {
             
-            $table->id();            
+            $table->id();        
             $table->string('kode_universitas')->index();
             $table->string('kode_fakultas')->index();
             $table->string('kode_program_studi')->index();
-            $table->string('kode_bahan_ajar')->index();
-            $table->string('kode_jenjang')->index();
+            $table->string('kode_jenjang');
             $table->string('kode_matakuliah', 15)->unique()->index();
 
             $table->string('matakuliah_id', 255)->index();
@@ -23,11 +22,11 @@ class CreateMataKuliahsTable extends Migration
             
             $table->string('silabus', 255)->nullable();
             $table->integer('semester');
-            $table->integer('sks_matakuliah')->nullable();
-            $table->integer('sks_teori')->nullable();
-            $table->integer('sks_praktek')->nullable();
-            $table->integer('sks_lapangan')->nullable();
-            $table->integer('sks_max')->nullable();
+            $table->integer('sks_matakuliah');
+            $table->integer('sks_teori');
+            $table->integer('sks_praktek');
+            $table->integer('sks_lapangan');
+            $table->integer('sks_max');
             $table->integer('tahun_akademik', 5);
             $table->timestamps();
         });
