@@ -15,12 +15,13 @@ class Fakultas extends Migration
     {
         Schema::connection('DATA_FAKULTAS')->create('fakultas', function (Blueprint $table) {
             $table->id();
-            $table->string('fakultas', 150)->index();
-            $table->string('alias', 35);
-            $table->text('description');
-            $table->text('visi');
-            $table->text('misi');
-            $table->string('logo');
+            $table->string('kode_fakultas', 15)->unique()->index();
+            $table->string('fakultas', 255)->index();
+            $table->string('alias', 35)->index();
+            $table->text('description')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
+            $table->string('logo')->nullable();
 
             // informasi pendirian
             $table->date('tanggal_berdiri');
@@ -31,10 +32,11 @@ class Fakultas extends Migration
 
         Schema::connection('DATA_FAKULTAS')->create('berkas_fakultas', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_berkas')->index()->unique();
             $table->string('nama_berkas')->index();
             $table->string('url_berkas')->index();
             $table->string('keterangan')->index();
-            $table->BigInteger('service_baak_id_fakultas');
+            $table->string('kode_fakultas')->index();
             $table->timestamps();
         });
     }

@@ -15,17 +15,19 @@ class ProgramStudi extends Migration
     {
         Schema::connection('DATA_PROGRAM_STUDI')->create('program_studi', function (Blueprint $table) {
             $table->id();
-            $table->BigInteger('kode_perguruan_tinggi');
-            $table->BigInteger('kode_fakultas');
+
+            $table->string('kode_perguruan_tinggi', 15)->index();
+            $table->string('kode_fakultas', 15)->index();
 
             // informasi program studi
+            $table->string('kode_program_studi', 15)->index()->unique();
             $table->string('program_studi', 150)->index();
-            $table->text('description');
-            $table->text('visi');
-            $table->text('misi');
-            $table->string('jenjang', 2);
-            $table->string('gelar', 5);
-            $table->string('logo');
+            $table->text('description')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
+            $table->string('jenjang', 2)->nullable();
+            $table->string('gelar', 5)->nullable();
+            $table->string('logo')->nullable();
 
             // informasi pendirian
             $table->date('tanggal_berdiri');
@@ -36,19 +38,20 @@ class ProgramStudi extends Migration
             $table->enum('akreditas',['A','B','C','D']);
             
             // kontak
-            $table->string('website');
-            $table->string('no_telp');
-            $table->string('email');
-            $table->string('fax');
+            $table->string('website')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('fax')->nullable();
             $table->timestamps();
         });
 
         Schema::connection('DATA_PROGRAM_STUDI')->create('berkas_program_studi', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_berkas_program_studi')->index()->unique();
             $table->string('nama_berkas')->index();
             $table->string('url_berkas')->index();
             $table->string('keterangan')->index();
-            $table->BigInteger('service_baak_id_program_studi');
+            $table->string('kode_program_studi')->index();
             $table->timestamps();
         });
     }

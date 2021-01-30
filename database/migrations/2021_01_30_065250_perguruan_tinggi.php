@@ -15,12 +15,13 @@ class PerguruanTinggi extends Migration
     {
         Schema::connection('DATA_PERGURUAN_TINGGI')->create('perguruan_tinggi', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_perguruan_tinggi', 15)->unique()->index();
             $table->string('perguruan_tinggi', 250)->index();
-            $table->string('alias', 55);
-            $table->text('description');
-            $table->text('visi');
-            $table->text('misi');
-            $table->string('logo');
+            $table->string('alias', 55)->index();
+            $table->text('description')->nullable();
+            $table->text('visi')->nullable();
+            $table->text('misi')->nullable();
+            $table->string('logo')->nullable();
 
             // informasi pendirian perguruan tinggi
             $table->date('tanggal_berdiri');
@@ -28,31 +29,33 @@ class PerguruanTinggi extends Migration
             $table->string('nomor_sk_pendirian_perguruan_tinggi', 55);
 
             // informasi akreditas perguruan tinggi
-            $table->string('kode_akreditas', 8)->index()->nullable();
+            $table->string('kode_akreditas', 15)->nullable();
 
             // alamat perguruan tinggi
-            $table->string('kota');
-            $table->string('provinsi');
-            $table->string('kelurahan');
-            $table->string('kecamatan');
-            $table->integer('kode_pos');
-            $table->text('alamat');
+            $table->string('kota')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('kelurahan')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->integer('kode_pos')->nullable();
+            $table->text('alamat')->nullable();
 
             // kontak perguruan tinggi
-            $table->string('website');
-            $table->string('no_telp');
-            $table->string('email');
-            $table->string('fax');
+            $table->string('website')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('email')->nullable();
+            $table->string('fax')->nullable();
             $table->timestamps();
         });
 
         Schema::connection('DATA_PERGURUAN_TINGGI')->create('berkas_perguruan_tinggi', function (Blueprint $table) {
             $table->id();
             // informasi yayasan
+            $table->string('kode_berkas_perguruan_tinggi')->index();
             $table->string('nama_berkas')->index();
             $table->string('url_berkas')->index();
             $table->string('keterangan')->index();
-            $table->BigInteger('service_baak_id_perguruan_tinggi')->nullable();
+            $table->string('kode_perguruan_tinggi')->index();
+            $table->integer('tahun_akademik');
             $table->timestamps();
         });
     }

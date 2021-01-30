@@ -11,31 +11,32 @@ class CreateMataKuliahsTable extends Migration
         Schema::connection('DATA_MATAKULIAH')->create('mata_kuliah', function (Blueprint $table) {
             
             $table->id();            
-            $table->bigInteger('id_universitas');
-            $table->bigInteger('id_fakultas');
-            $table->bigInteger('id_bahan_ajar');
-            $table->bigInteger('id_jenjang');
+            $table->string('kode_universitas')->index();
+            $table->string('kode_fakultas')->index();
+            $table->string('kode_program_studi')->index();
+            $table->string('kode_bahan_ajar')->index();
+            $table->string('kode_jenjang')->index();
+            $table->string('kode_matakuliah', 15)->unique()->index();
 
-            $table->string('kode_matakuliah', 35);
-
-            $table->string('matakuliah', 255);
-            $table->string('tahun_akademik', 255);
-            $table->string('silabus', 255);
+            $table->string('matakuliah_id', 255)->index();
+            $table->string('matakuliah_en', 255)->index();
+            
+            $table->string('silabus', 255)->nullable();
             $table->integer('semester');
-
-            $table->integer('sks_matakuliah');
-            $table->integer('sks_teori');
-            $table->integer('sks_praktek');
-            $table->integer('sks_lapangan');
-            $table->integer('sks_max');
-
+            $table->integer('sks_matakuliah')->nullable();
+            $table->integer('sks_teori')->nullable();
+            $table->integer('sks_praktek')->nullable();
+            $table->integer('sks_lapangan')->nullable();
+            $table->integer('sks_max')->nullable();
+            $table->integer('tahun_akademik', 5);
             $table->timestamps();
         });
 
         Schema::connection('DATA_MATAKULIAH')->create('mata_kuliah_ajar', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_matakuliah');
-            $table->bigInteger('nidn');
+            $table->string('kode_matakuliah_ajar')->unique()->index();
+            $table->string('kode_matakuliah');
+            $table->string('kode_dosen');
             $table->timestamps();
         });
     }
