@@ -6,6 +6,14 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
+    public function response(){
+        return response()->json([
+            'service_name' => 'SERVICE BAAK',
+            'code' => 200,
+            'result' => null
+        ]);
+    }
+
     public function res($db_name, $result = null){
 
         if($result !== null) {

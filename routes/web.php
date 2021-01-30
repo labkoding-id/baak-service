@@ -1,5 +1,7 @@
 <?php
 
+$router->get('/', 'HomeController@index');
+
 $router->group(['prefix' => 'yayasan'], function () use ($router) {
 
     $router->get('all', 'yayasan\YayasanController@all');
