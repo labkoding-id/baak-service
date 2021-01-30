@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\fakultas;
 
 use App\Http\Controllers\Controller;
-use App\Models\Fakultas\Fakultas as Model;
+use App\Models\fakultas\Fakultas as Model;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

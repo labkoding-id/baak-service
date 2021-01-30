@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Perguruan_tinggi;
+namespace App\Models\perguruanTinggi;
 
 use Illuminate\Database\Eloquent\Model;
 

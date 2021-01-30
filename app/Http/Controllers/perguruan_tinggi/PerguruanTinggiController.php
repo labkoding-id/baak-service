@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\perguruan_tinggi;
 
 use App\Http\Controllers\Controller;
-use App\Models\Perguruan_tinggi\PerguruanTinggi as Model;
+use App\Models\perguruanTinggi\PerguruanTinggi as Model;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

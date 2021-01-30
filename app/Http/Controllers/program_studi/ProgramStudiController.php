@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\program_studi;
 
 use App\Http\Controllers\Controller;
-use App\Models\Program_studi\ProgramStudi as Model;
+use App\Models\programStudi\ProgramStudi as Model;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

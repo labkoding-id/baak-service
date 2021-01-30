@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\yayasan;
 
 use App\Http\Controllers\Controller;
-use App\Models\Yayasan\Yayasan as Model;
+use App\Models\yayasan\Yayasan as Model;
 use Exception;
 use Illuminate\Support\Facades\DB;
 

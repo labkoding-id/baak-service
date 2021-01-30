@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Yayasan;
+namespace App\Models\yayasan;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model ;
 
 class Yayasan extends Model
 {
